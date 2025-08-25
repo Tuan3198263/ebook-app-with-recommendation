@@ -1,0 +1,15 @@
+{
+  "totalBooks": 120,
+  "categories": [
+    "Công nghệ thông tin",
+    "Khoa học tự nhiên",
+    "Triết học",
+    "Giáo dục",
+    "Kinh tế",
+    "Văn học"
+  ],
+  "documentTypes": [
+    "textbook",
+    "other"
+  ]
+}

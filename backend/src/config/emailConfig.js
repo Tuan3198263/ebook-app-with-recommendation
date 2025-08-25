@@ -36,7 +36,7 @@ const transporter = nodemailer.createTransport({
     auth: {
         user: process.env.EMAIL_USER,  // Địa chỉ email của bạn
         pass: process.env.EMAIL_PASS,  // Mật khẩu ứng dụng của bạn
-  },
+    },
 });
 
 export default transporter;

@@ -13,7 +13,7 @@ const fileFilter = (req, file, cb) => {
   if (extname && mimetype) {
     cb(null, true);
   } else {
-    cb(new Error('Chỉ cho phép các định dạng ảnh: JPEG, JPG, PNG, GIF.'));
+    cb(new Error('Chỉ cho phép các định dạng ảnh: JPEG, JPG, PNG, GIF, JFIF, WEBP'));
   }
 };
 

@@ -1,0 +1,36 @@
+# Book Recommendation Model - Deployment Guide
+
+## Model Information
+- Created: 2025-08-04 05:19:28 UTC
+- Created by: Tuan9112
+- Type: Content-based Recommendation System
+- Version: 1.0.0
+
+## Production Files
+1. similarity_matrix.pkl - Main recommendation engine
+2. index_to_objectid.json - Maps index to MongoDB ObjectId
+3. objectid_to_index.json - Maps ObjectId to index
+4. books_model_data.pkl - Books dataset
+5. faculty_mapping.json - Faculty mappings
+6. model_metadata.json - Model information
+
+## Usage Example
+```python
+import pickle
+import json
+
+# Load model
+with open('similarity_matrix.pkl', 'rb') as f:
+    similarity_matrix = pickle.load(f)
+
+# Load mappings
+with open('objectid_to_index.json', 'r') as f:
+    objectid_to_index = json.load(f)
+```
+
+## Performance
+- Content Diversity: 1.050
+- Category Precision: 1.000
+- Cold Start Coverage: 100%
+
+Ready for production deployment!

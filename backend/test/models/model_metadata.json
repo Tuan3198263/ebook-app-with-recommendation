@@ -1,0 +1,38 @@
+{
+  "model_info": {
+    "type": "content_based_recommendation",
+    "version": "1.0.0",
+    "created_date": "2025-08-04 05:19:28",
+    "created_by": "Tuan9112",
+    "location": "/content/drive/MyDrive/Ebooks"
+  },
+  "data_stats": {
+    "total_books": 120,
+    "similarity_matrix_shape": [
+      120,
+      120
+    ],
+    "categories": [
+      "Triết học",
+      "Giáo dục",
+      "Kinh tế",
+      "Công nghệ thông tin",
+      "Văn học",
+      "Khoa học tự nhiên"
+    ],
+    "document_types": [
+      "other",
+      "textbook"
+    ]
+  },
+  "technical_details": {
+    "feature_engineering": "TF-IDF on combined features",
+    "similarity_metric": "cosine_similarity",
+    "cold_start_strategy": "Faculty-based filtering"
+  },
+  "performance": {
+    "content_diversity": 1.05,
+    "category_precision": 1.0,
+    "mean_similarity": 0.1512
+  }
+}

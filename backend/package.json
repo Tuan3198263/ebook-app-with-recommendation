@@ -6,20 +6,45 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/index.js",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "migrate:books": "node src/utils/migrateBookSchema.js migrate",
+    "migrate:books:rollback": "node src/utils/migrateBookSchema.js rollback",
+    "migrate:books:stats": "node src/utils/migrateBookSchema.js stats",
+    "export:ml-data": "node test/exportBooksForML.js",
+    "user:stats": "node test/user/userStatistics.js",
+    "user:create": "node test/user/createUsers.js",
+    "user:delete": "node test/user/deleteStudentUsers.js",
+    "user:check": "node test/user/checkUsers.js",
+    "user:reset-password": "node test/user/resetPassword.js",
+    "interaction:stats": "node test/interaction/recentlyViewedStats.js",
+    "interaction:create": "node test/interaction/createRecentlyViewed.js",
+    "ml:cf-overview": "node test/ml/collaborativeFilteringOverview.js",
+    "ml:export-cf": "node test/ml/exportCollaborativeFilteringData.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.842.0",
+    "@aws-sdk/lib-storage": "^3.812.0",
+    "@aws-sdk/s3-request-presigner": "^3.842.0",
+    "aws-sdk": "^2.1692.0",
+    "axios": "^1.11.0",
     "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.6.1",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "handlebars": "^4.7.8",
     "jsonwebtoken": "^9.0.2",
+    "moment": "^2.30.1",
     "mongoose": "^8.15.0",
-    "multer": "^2.0.0"
+    "multer": "^2.0.0",
+    "multer-s3": "^3.0.1",
+    "nodemailer": "^7.0.3",
+    "qs": "^6.14.0",
+    "slugify": "^1.6.6"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

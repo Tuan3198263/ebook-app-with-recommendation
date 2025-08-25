@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xác Nhận Đơn Hàng</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333333;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        background-color: #1a5f7a;
+        padding: 15px;
+        text-align: center;
+        border-radius: 5px 5px 0 0;
+      }
+      .header h2 {
+        color: #ffffff;
+        margin: 0;
+        font-size: 22px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .content {
+        padding: 20px;
+      }
+      .order-info {
+        background-color: #f5f5f5;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+      }
+      .order-details {
+        margin-bottom: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      th {
+        background-color: #f0f0f0;
+        text-align: left;
+        padding: 10px;
+        border-bottom: 1px solid #dddddd;
+      }
+      td {
+        padding: 10px;
+        border-bottom: 1px solid #dddddd;
+      }
+      .total {
+        font-weight: bold;
+        text-align: right;
+        font-size: 18px;
+      }
+      .footer {
+        margin-top: 30px;
+        text-align: center;
+        color: #777777;
+        font-size: 14px;
+      }
+      .ebook-info {
+        background-color: #e8f4ff;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 15px 0;
+        border-left: 4px solid #1a5f7a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>ĐẶT HÀNG THÀNH CÔNG</h2>
+      </div>
+      <div class="content">
+        <p>Xin chào {{userName}},</p>
+        <p>
+          Cảm ơn bạn đã mua sách điện tử tại CTU Ebook. Đơn hàng của bạn đã được
+          xác nhận và thanh toán thành công!
+        </p>
+
+        <div class="order-info">
+          <p><strong>Mã đơn hàng:</strong> {{orderCode}}</p>
+          <p><strong>Ngày đặt hàng:</strong> {{orderDate}}</p>
+          <p><strong>Phương thức thanh toán:</strong> {{paymentMethod}}</p>
+        </div>
+
+        <div class="order-details">
+          <h3>Chi tiết đơn hàng</h3>
+          <table>
+            <tr>
+              <th>Ảnh bìa</th>
+              <th>Sản phẩm</th>
+              <th>Thời hạn</th>
+              <th>Giá</th>
+            </tr>
+            {{#each items}}
+            <tr>
+              <td>
+                <img
+                  src="{{this.coverImage}}"
+                  alt="{{this.title}}"
+                  style="width: 60px; height: auto; border-radius: 3px"
+                />
+              </td>
+              <td>{{this.title}}</td>
+              <td>{{this.duration}}</td>
+              <td>{{this.price}} VNĐ</td>
+            </tr>
+            {{/each}}
+            <tr>
+              <td colspan="2" class="total">Tổng cộng:</td>
+              <td class="total">{{totalAmount}} VNĐ</td>
+            </tr>
+          </table>
+        </div>
+        <div class="ebook-info">
+          <h3>Thông Tin Truy Cập Sách Điện Tử</h3>
+          <p>
+            Bạn đã được cấp quyền truy cập các sách điện tử trong đơn hàng này.
+            Vui lòng đăng nhập vào tài khoản CTU Ebook để xem và đọc sách.
+          </p>
+        </div>
+
+        <p>
+          Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi qua
+          email hoặc hotline.
+        </p>
+        <p>Trân trọng,<br />Đội ngũ CTU Ebook</p>
+      </div>
+      <div class="footer">
+        <p>Đây là email tự động. Vui lòng không trả lời email này.</p>
+        <p>&copy; {{currentYear}} CTU Ebook. Tất cả các quyền được bảo lưu.</p>
+      </div>
+    </div>
+  </body>
+</html>
