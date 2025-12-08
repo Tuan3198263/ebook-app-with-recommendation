@@ -1,19 +1,19 @@
 import crypto from 'crypto';
-import qs from 'qs'; // Dùng qs thay vì querystring như VNPay mẫu
+import qs from 'qs';
 import moment from 'moment';
 import dotenv from 'dotenv';
 
-// Load environment variables
 dotenv.config();
 
-// Cấu hình VNPay
+const backendUrl = process.env.BACKEND_URL || 'http://localhost:3000';
+
 const vnpConfig = {
-    vnp_TmnCode: process.env.VNP_TMN_CODE , // Mã định danh merchant
-    vnp_HashSecret: process.env.VNP_HASH_SECRET , // Secret key
-    vnp_Url: process.env.VNP_URL || 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html', // URL thanh toán sandbox
-    vnp_ReturnUrl: process.env.VNP_RETURN_URL || 'http://localhost:3000/api/payment/vnpay-return', // URL trả về
-    vnp_IpnUrl: process.env.VNP_IPN_URL || 'http://localhost:3000/api/payment/vnpay-ipn', // URL IPN
-    vnp_QueryUrl: process.env.VNP_API_URL || 'https://sandbox.vnpayment.vn/merchant_webapi/api/transaction', // URL API truy vấn
+    vnp_TmnCode: process.env.VNP_TMN_CODE,
+    vnp_HashSecret: process.env.VNP_HASH_SECRET,
+    vnp_Url: process.env.VNP_URL || 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html',
+    vnp_ReturnUrl: `${backendUrl}/api/payment/vnpay-return`,
+    vnp_IpnUrl: `${backendUrl}/api/payment/vnpay-ipn`,
+    vnp_QueryUrl: process.env.VNP_API_URL || 'https://sandbox.vnpayment.vn/merchant_webapi/api/transaction',
 };
 
 // Hàm sắp xếp object theo key

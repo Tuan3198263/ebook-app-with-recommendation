@@ -61,19 +61,26 @@ export const vnpayReturn = async (req, res) => {
     try {
         console.log('=== VNPay RETURN URL CALLBACK ===');
         
+        let frontendUrl = process.env.FRONTEND_URL;
+        if (!frontendUrl) {
+            if (process.env.NODE_ENV === 'production') {
+                console.error('FATAL: FRONTEND_URL is not defined in production environment variables.');
+                return res.status(500).send('Configuration error: Frontend URL is not set. Please contact the administrator.');
+            }
+            frontendUrl = 'http://localhost:5173'; // Fallback for local development
+        }
+        
         // Lấy parameters từ query (GET) hoặc body (POST)
         const params = req.method === 'GET' ? req.query : req.body;
         
         if (!params || Object.keys(params).length === 0) {
             console.error('=== KHÔNG CÓ PARAMETERS NÀO ===');
-            const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
             return res.redirect(`${frontendUrl}/payment/result?success=false&code=98&message=${encodeURIComponent('Không nhận được dữ liệu từ VNPay')}`);
         }        
         console.log('=== PROCESSING PARAMETERS ===');
         
         // Xác thực checksum - CHỈ KIỂM TRA TOÀN VẸN DỮ LIỆU
         const isValid = vnpayService.verifyReturnUrl(params);
-        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
         
         if (!isValid) {
             console.warn('=== CHỮ KÝ KHÔNG HỢP LỆ ===');
@@ -156,7 +163,14 @@ export const vnpayReturn = async (req, res) => {
         
     } catch (error) {
         console.error('=== LỖI TRONG VNPay RETURN ===', error);
-        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+        
+        let frontendUrl = process.env.FRONTEND_URL;
+        if (!frontendUrl) {
+            if (process.env.NODE_ENV === 'production') {
+                return res.status(500).send('Configuration error: Frontend URL is not set.');
+            }
+            frontendUrl = 'http://localhost:5173';
+        }
         return res.redirect(`${frontendUrl}/payment/result?success=false&code=99&message=${encodeURIComponent('Lỗi xử lý dữ liệu')}`);
     }
 };
